@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTH - Programación Web 2</title>
+  <link rel="stylesheet" href="estilo formulario.css">
+</head>
+<body>
+
+<h1>Tarea Práctica # 1</h1>
+<p class="subtitle">Seleccione una opción del menú para desplegar el ejercicio correspondiente:</p>
+
+<div class="menu-navegacion">
+  <button class="btn-menu" onclick="mostrarFormulario('opcion1', this)">1. Servlet Binarios</button>
+  <button class="btn-menu" onclick="mostrarFormulario('opcion2', this)">2. Servlet Números</button>
+  <button class="btn-menu" onclick="mostrarFormulario('opcion3', this)">3. Servlet Hipotenusa</button>
+</div>
+
+<div id="opcion1" class="formulario-container">
+  <h2>1. Servlet Binarios</h2>
+  <form action="BinariosServlet" method="POST">
+    <label for="operacionBin">Operación:</label>
+    <select name="operacion" id="operacionBin">
+      <option value="binToDec">Binario a Decimal</option>
+      <option value="decToBin">Decimal a Binario</option>
+    </select>
+
+    <label for="numeroBin">Número a procesar:</label>
+    <input type="text" name="numero" id="numeroBin" required placeholder="Ej: 111 o 7">
+
+    <button type="submit" class="btn-enviar">Procesar</button>
+  </form>
+</div>
+
+<div id="opcion2" class="formulario-container">
+  <h2>2. Servlet Números Mayores, Menores y Repetidos</h2>
+  <form action="NumerosServlet" method="POST">
+    <label for="operacionNum">Operación:</label>
+    <select name="operacion" id="operacionNum">
+      <option value="mayorMenor">Encontrar Mayor y Menor de 3 números</option>
+      <option value="repetido">Valor que más se repite (n números)</option>
+    </select>
+
+    <label for="listaNumeros">Ingrese los números (separados por comas):</label>
+    <input type="text" name="numeros" id="listaNumeros" required placeholder="Ej: 5,3,8,3,2">
+
+    <button type="submit" class="btn-enviar">Procesar</button>
+  </form>
+</div>
+
+<div id="opcion3" class="formulario-container">
+  <h2>3. Servlet Hipotenusa</h2>
+  <form action="HipotenusaServlet" method="POST">
+    <label for="catetoA">Cateto Adyacente (a):</label>
+    <input type="number" step="any" name="catetoA" id="catetoA" required placeholder="Ej: 3">
+
+    <label for="catetoB">Cateto Opuesto (b):</label>
+    <input type="number" step="any" name="catetoB" id="catetoB" required placeholder="Ej: 4">
+
+    <button type="submit" class="btn-enviar">Calcular Hipotenusa</button>
+  </form>
+</div>
+
+<script>
+  function mostrarFormulario(idFormulario, botonSeleccionado) {
+    var formularios = document.getElementsByClassName('formulario-container');
+    for (var i = 0; i < formularios.length; i++) {
+      formularios[i].style.display = 'none';
+    }
+
+    var botones = document.getElementsByClassName('btn-menu');
+    for (var j = 0; j < botones.length; j++) {
+      botones[j].classList.remove('activo');
+    }
+
+    document.getElementById(idFormulario).style.display = 'block';
+
+    botonSeleccionado.classList.add('activo');
+  }
+</script>
+
+</body>
+</html>
